@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e6e6fa, #ffb6c1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+/* Envelope */
+.envelope {
+    width: 300px;
+    height: 200px;
+    background: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+    perspective: 800px;
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    background: #ffe4e1;
+    clip-path: polygon(0 0,100% 0,50% 100%);
+    transform-origin: top;
+    transition: transform 0.8s ease;
+}
+
+.envelope.open::before {
+    transform: rotateX(180deg);
+}
+
+/* Letter */
+.letter {
+    display: none;
+    width: 400px;
+    max-height: 500px;
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    overflow-y: auto;
+}
+
+.letter.show {
+    display: block;
+}
+
+.letter-content {
+    font-size: 18px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+/* Slideshow */
+.slideshow {
+    margin-top: 15px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.slideshow img.active {
+    opacity: 1;
+}
+
+/* Stickers */
+.stickers {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 90px;
+}
+
+.stickers.left {
+    left: 10px;
+    right: auto;
+}
+
+.stickers img {
+    width: 100%;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    50% { transform: translateY(-10px); }
+}
+
+/* Hearts */
+.hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 22px;
+    animation: rise 5s linear forwards;
+}
+
+@keyframes rise {
+    from { transform: translateY(100vh); opacity: 1; }
+    to { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Music */
+.music-controls {
+    margin-top: 15px;
+    display: none;
+}
+
+button {
+    background: #ffb6c1;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e6e6fa;
+    color: #333;
+}
+
+/* Mobile */
+@media(max-width:500px){
+    .letter {
+        width: 90%;
+        max-height: 80vh;
+    }
+}
